@@ -1,0 +1,25 @@
+<html>
+    <head>
+          <script type="javascript/text">
+            var svgDoc;
+            function init() {
+                var obj = document.getElementById("shirt");
+                svgDoc = obj.getSVGDocument();
+            }
+
+            function updateSVG(which , amount) {
+
+            }
+
+            window.updateHtmlField = function(which, percent) {
+                document.getElementById("fld"+which).value=percent;
+            }
+          </script>     
+    </head>
+    <body>
+        <object id="shirt" data="shirt.svg" type="image/svg+xml"></object>
+        <label for="">RED<input type="text" id="fld0"/></label>
+        <label for="">GREEN <input type="text" id="fld1"/></label>
+        <label for="">BLUE <input type="text" id="fld2"/></label>
+    </body>
+</html>
