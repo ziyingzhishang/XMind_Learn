@@ -1,0 +1,38 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <p>Hello D3</p>
+
+</body>
+<script src="d3.min.js"></script>
+<script type="text/javascript">
+        d3.select("body").selectAll("p").text("This is D3 world.");
+        var str = "Shenzhen";
+        var model = d3.selectAll("p");
+
+        // datum :  绑定数据
+        model.datum(str);
+        model.text(function (d, i) {
+            return i + ":" + d;
+        });
+
+        // data 
+        var dataset = ["China", "Shenzhen"];
+        model.data(dataset).text(function(d,i){
+            return d;
+        });
+
+        //插入元素：append（在尾部）,  insert(在头部)
+        var body = d3.select("body");
+        body.append("p").text("Nanshan");
+        body.insert("p").text("Earth");
+
+
+        var p = d3.select("p");
+        p.remove();
+    </script>
+
+</html>
