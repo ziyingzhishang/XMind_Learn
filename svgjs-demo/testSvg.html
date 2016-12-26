@@ -10,12 +10,18 @@
             <rect x="10" y="10" width="100" height="10" style="fill:blue"></rect>
         </svg>-->
     <div id='test'></div>
-    
+
     <script src="svg.js"></script>
     <script type="text/javascript">
     
         var draw = SVG('test').size(200, 200);
-        draw.rect(100, 100).attr({ fill: "#f06" }).move(100,100);
+        var rect = draw.rect(100, 100).attr({ fill: "blue" }).move(100,100);
+        var group = draw.group()
+        group.path('M10,20L30,40').attr({stroke:"black"});
+        group.add(rect);
+        var polygon = draw.polygon('0,0 100,50 50,100').fill('none').stroke({ width: 1 })
+
+        
             // .animate().fill('#f03').move(100,100)
     </script>
 </body>
