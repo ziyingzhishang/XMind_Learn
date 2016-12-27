@@ -1,0 +1,13 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <div id ="result"></div>
+        <script src="bundle.js"></script>
+        <script>
+            var sq = require('./foo.js');
+            var s = sq();
+            document.getElementById("result").innerHTML = s;
+        </script>
+    </body>
+</html>
