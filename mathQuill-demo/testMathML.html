@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="mathml.xsl"?> 
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">  
+  <head>  
+    <meta charset="UTF-8"> 
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+    <script src="svg.js"></script>
+  </head>  
+  <body>
+    <input type="text" id="math"/>
+    <!--<textarea id=math name="MSG" cols=40 rows=4></textarea>-->
+    <div id="test"></div>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+       <mrow>
+          <mi>A</mi>
+          <mo>=</mo>
+          <mfenced open="[" close="]">
+             <mtable>
+                <mtr>
+                   <mtd><mi>x</mi></mtd>
+                   <mtd><mi>y</mi></mtd>
+                </mtr>
+                <mtr>
+                   <mtd><mi>z</mi></mtd>
+                   <mtd><mi>w</mi></mtd>
+                </mtr>
+             </mtable>
+         </mfenced>
+      </mrow>
+   </math>
+   <script type="text/javascript">
+        var dom = document.getElementById("test"), 
+            input = document.getElementById("math");
+
+        window.onload = function() {
+            MathJax.Hub.Config({
+                jax: ["input/TeX", "output/SVG"],
+                tex2jax: {inlineMath: [['$','$'], ['(',')']]},
+                SVG: {
+                    scale: 100
+                }
+            });
+            input.onkeydown = render;
+        }
+
+        function render(e) {
+            if(e.keyCode == 13){
+                // alert(input.value);
+                dom.innerHTML = input.value;
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            }
+        }
+        
+    </script>
+    <script type="text/javascript">
+    
+        var draw = SVG('test').size(200, 200);
+        var rect = draw.rect(100, 100).attr({ fill: "blue" }).move(100,100);
+
+        var group = draw.group()
+        group.path('M10,20L30,40').attr({stroke:"black"});
+        group.add(rect);
+        group.put((new SVG.Text()).text("test"));
+
+        var polygon = draw.polygon('0,0 100,50 50,100').fill('none').stroke({ width: 1 })
+            // .animate().fill('#f03').move(100,100)
+    </script>
+</body>
+</html>  

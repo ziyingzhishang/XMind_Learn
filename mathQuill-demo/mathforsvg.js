@@ -5,6 +5,11 @@
 //5. 实现渲染静态latx标签;
 //6. 实现div放缩;
 
+//7. 回车的时候创建新的rect和mathspan dom;
+//8. 添加鼠标hover , out， 单击等效果；
+//9. 使用svg绘制路径；
+//10. 截图功能；
+
 var mathSpan = document.getElementById('math'),
     svg = document.getElementById('svg'),
     centerdiv = document.getElementById('boundary');
@@ -114,7 +119,8 @@ window.onload = function () {
     rDrag.init(centerdiv);    //初始化可拖拽的对象
 
     var problemSpan = document.getElementById('problem');
-    // MQ.StaticMath(problemSpan);
+    // var math = MQ.StaticMath(problemSpan);
+    // console.log(math.latex());
     var proMathField = MQ.MathField(problemSpan, {
         handlers: {
             edit: function () {
