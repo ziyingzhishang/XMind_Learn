@@ -1,25 +1,30 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="mathquill.css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="mathquill.js"></script>
-        <script src="svg.js"></script>
-        <script>
-            var MQ = MathQuill.getInterface(2);
-        </script>
-        <style>   
-            #body{position:relative; color:#000; border:1px solid #000; width:500px; height:400px}   
-            #svg{ position:absolute; left:0px; top:0px; } 
-            #math{ position:absolute; left:10px; top:5px;border:1px solid #000;}  
-            #boundary{position: absolute; left: 0px; top: 0px;}
-        </style>  
-    </head>
-    <body id="body">
-        <!--<div id="boundary">-->
-            <div id="svg"></div>
-            <div id="math"></div>
-        <!--</div>-->
 
-        <script src="mathforsvg.js"></script>
-    </body>
+<head>
+    <link rel="stylesheet" href="mathquill.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="mathquill.js"></script>
+    <script src="svg.js"></script>
+    <script>
+        var MQ = MathQuill.getInterface(2);
+    </script>
+    <style>   
+        #body{position:relative; color:#000; border:1px solid #000; overflow: hidden;}   
+        #svg{ position:absolute; left:0px; top:0px; } 
+        #math{ position:absolute; left:10px; top:5px;}  
+        #boundary{position: absolute; }
+        #problem{position: absolute; left: 100px; top:100px; border:1px solid #000;}
+    </style>
+</head>
+
+<body id="body">
+    <div id="boundary">
+        <div id="svg">
+            <div id="problem">x=\frac{-b\pm\sqrt{b^2-4ac}}{2}</div>
+        </div>
+        <div id="math"></div>
+    </div>
+    <script src="mathforsvg.js"></script>
+</body>
+
 </html>
