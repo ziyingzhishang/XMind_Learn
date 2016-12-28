@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="mathquill.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="mathquill.js"></script>
+    <script>
+        var MQ = MathQuill.getInterface(2);
+    </script>
+</head>
+
+<body>
+
+    <div id='test'></div>
+    <h1>Input latex：</h1>
+
+    <p><span id="answer">x=</span></p>
+
+    <script src="svg.js"></script>
+    <script type="text/javascript">
+        var draw = SVG('test').size(200, 200);
+        var rect = draw.rect(100, 100).attr({ fill: "blue" }).move(100, 100);
+
+        var group = draw.group()
+        // group.path('M10,20L30,40').attr({ stroke: "black" });
+        // group.add(rect);
+        // var text = new SVG.foreignobject();
+        var answerSpan = document.getElementById('answer');
+        var element = draw.element('foreignobject', SVG.Parent);
+        element.innerHTML = "<span id='answer'>x=</span>";
+        group.put(element);
+        // group.put(text.text("x="));
+
+        var answerMathField = MQ.MathField(answerSpan, {
+            handlers: {
+                edit: function () {
+                    var enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
+                    // checkAnswer(enteredMath);
+                    // console.log(enteredMath);
+                    // group.put();
+                    // var polygon = draw.polygon('0,0 100,50 50,100').fill('none').stroke({ width: 1 })
+                }
+            }
+        });
+        
+    </script>
+    
+</body>
+
+</html>

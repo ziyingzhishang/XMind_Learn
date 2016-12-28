@@ -20,20 +20,29 @@
             strike-width: 5;
         }
     </style>
+    
+    <link rel="stylesheet" href="mathquill.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="mathquill.js"></script>
 </head>
 
 <body>
     <h1>SVG DEMO </h1>
     <svg viewbox="0 0 250 250"
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
         <title> AN SVG DEMO</title>    
         <circle cx="125" cy="125" r="100"></circle>
-        <text x="125" y="125" dy="0.5em" text-anchor="middle">Look it is a svg</text>
+        <text x="125" y="125" dy="0.5em" text-anchor="middle"></text>
+        <foreignobject x="0" y="0" width="100" height="100">
+              <span id="answer">x=</span>
+        </foreignobject>
+        <script type="application/ecmascript" xlink:href="testmath.js"></script>
     </svg>
+    
     <div>
         <object id="shirt_" type="image/svg+xml" data="shirt.svg"/>
     </div>
     
 </body>
-
 </html>

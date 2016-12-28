@@ -16,9 +16,15 @@
     
         var draw = SVG('test').size(200, 200);
         var rect = draw.rect(100, 100).attr({ fill: "blue" }).move(100,100);
+
+        var text = draw.text("jksdfjh ");
+        
         var group = draw.group()
         group.path('M10,20L30,40').attr({stroke:"black"});
         group.add(rect);
+        group.put((new SVG.Text()).text("test"));
+        group.add(text);
+
         var polygon = draw.polygon('0,0 100,50 50,100').fill('none').stroke({ width: 1 })
 
         
