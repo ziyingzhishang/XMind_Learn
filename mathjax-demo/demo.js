@@ -1,3 +1,3 @@
 // 依赖关系
-// lisence
+// lisence Apache License, Version 2.0
 // 库的大小
