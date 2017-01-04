@@ -17,9 +17,24 @@
     tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
   });
 </script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
+<script type="text/javascript" src="F://snowbrush_devTime//MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
+<script type="text/javascript" src="svg.js"></script>
 <script>
+var wmargin = 10, hmargin = 5;
+var group, draw;
+window.onload = function() {
+    var mathSpan = document.getElementById("math");
+    var w = mathSpan.offsetWidth, h = mathSpan.offsetHeight;
+
+    var body = document.getElementById("body");
+    var outw = body.offsetWidth, outh = body.offsetHeight;
+
+    draw = SVG('svg').size(outw, outh);
+    rect = draw.rect(w + 2 * wmargin, h + 2 * hmargin).attr({ fill: "lightblue", stroke: "black" });
+    
+    group = draw.group();
+}
+
 var Preview = {
   delay: 150,        // delay after keystroke before updating
 
@@ -49,6 +64,17 @@ var Preview = {
     this.buffer = buffer; this.preview = preview;
     buffer.style.visibility = "hidden"; buffer.style.position = "absolute";
     preview.style.position = ""; preview.style.visibility = "";
+    var e = preview.getElementsByTagName("svg");
+    var nested = draw.nested(e);
+    if(e.length != 0){
+      // group.put(nested);
+      draw.add(e[0].innerHTML);
+      // for(var i = 0; i < e.length; i ++){
+      //     group.put(e[i]);
+      // }
+      // group.put(e[0]);
+      // draw.image(e[0]);
+    }
   },
 
   //
@@ -108,7 +134,7 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
 
 </script>
 </head>
-<body>
+<body id="body">
 
 <p> Type text (mixed with MathML, TeX or asciimath) in the box below for a live preview.</p>
 
@@ -126,6 +152,9 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
 <div id="MathPreview" style="border:1px solid; padding: 3px; width:50%; margin-top:5px"></div>
 <div id="MathBuffer" style="border:1px solid; padding: 3px; width:50%; margin-top:5px; 
 visibility:hidden; position:absolute; top:0; left: 0"></div>
+<div id=svg>
+  <div id="math"></div>
+</div>
 
 <script>
 Preview.Init();
