@@ -82,7 +82,7 @@ var rDrag = {
 }
 
 var wmargin = 10, hmargin = 5;
-var group, draw;
+var group, draw, pNode;
 window.onload = function() {
     var mathSpan = document.getElementById("body");
     var w = mathSpan.offsetWidth, h = mathSpan.offsetHeight;
@@ -93,27 +93,48 @@ window.onload = function() {
     draw = SVG('svg').size(outw, outh);
     rect = draw.rect(10, 10).attr({ fill: "lightblue", stroke: "black" });
     group = draw.group();
+    pNode = group.node;
+    pNode.setAttribute("transform","translate("+wmargin+","+hmargin+")");
     var centerdiv = document.getElementById('svg');
     rDrag.init(centerdiv);
-    // var w = 
-    // resizeSvg(rect, w, h);
 
     var problemSpan = document.getElementById('problem');
+    draw.node.ondblclick = function() {
+        //显示problemSpan
+        problemSpan.style.visibility = "";
+        problemSpan.focus();
+    }
+    problemSpan.onmouseleave = renderSvg;
+    
+    function renderSvg() {
+        // 失去焦点之后，将svg渲染到图中；
+        problemSpan.style.visibility = "hidden";
+        Preview.Update();
+    }
+
     // var math = MQ.StaticMath(problemSpan);
-    // console.log(math.latex());
     var proMathField = MQ.MathField(problemSpan, {
         handlers: {
             edit: function () {
-                var enteredMath = proMathField.latex(); // Get entered math in LaTeX format
-                var w = problemSpan.offsetWidth, h = problemSpan.offsetHeight;
-                // checkAnswer(enteredMath);
-                document.getElementById("MathInput").value = '$'+enteredMath+'$'
-                Preview.Update();
-                resizeSvg(rect, w, h);
-                // console.log(enteredMath);
+                // var enteredMath = proMathField.latex(); // Get entered math in LaTeX format
+                // var w = problemSpan.offsetWidth, h = problemSpan.offsetHeight;
+                // // checkAnswer(enteredMath);
+                // document.getElementById("MathInput").value = '$'+enteredMath+'$'
+                // Preview.Update();
+                cacheLatex();
+                // resizeSvg(rect, w, h);
             }
         }
     });
+    function cacheLatex() {
+        var enteredMath = proMathField.latex(); // Get entered math in LaTeX format
+        var w = problemSpan.offsetWidth, h = problemSpan.offsetHeight;
+        // checkAnswer(enteredMath);
+        document.getElementById("MathInput").value = '$'+enteredMath+'$'
+        // Preview.Update();
+    }
+
+    cacheLatex();
 }
 
 function resizeSvg(target, w = 0, h = 0) {
@@ -158,13 +179,11 @@ var Preview = {
     var e = preview.getElementsByTagName("svg");
     var image;
     if(e.length != 0){
-      var pNode = group.node;
-      pNode.setAttribute("transform","translate("+wmargin+","+hmargin+")");
       var old = pNode.getElementsByTagName('svg')
       if(old.length === 1){
         pNode.removeChild(old[0]);
       }
-      e[0].y = hmargin;
+    //   e[0].y = hmargin;
       var w = e[0].getBoundingClientRect().width, h = e[0].getBoundingClientRect().height;
       pNode.appendChild(e[0]);
       resizeSvg(rect, w, h);

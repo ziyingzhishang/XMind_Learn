@@ -17,15 +17,16 @@
     tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
   });
 </script>
-<script type="text/javascript" src="F://snowbrush_devTime//MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
-<script type="text/javascript" src="svg.js"></script>
-<link rel="stylesheet" href="mathquill.css" />
+<script type="text/javascript" src="../res/MathJax.js?config=TeX-AMS_SVG"></script>
+<script type="text/javascript" src="../res/svg.js"></script>
+<link rel="stylesheet" href="../res/mathquill/mathquill.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="mathquill.js"></script>
+<script src="../res/mathquill/mathquill.js"></script>
 <script type="text/javascript" src="sample-dynamic-2.js"></script>
 <style>
   body{position:relative; color:#000; border:1px solid #000; overflow: hidden;}
   #svg{position: absolute; }
+  #problem{position: absolute; background: white;}
 </style>
 <script>
     var MQ = MathQuill.getInterface(2);
@@ -33,8 +34,10 @@
 </head>
 
 <body id="body">
-<div id="svg"></div>
-<p> Type text (mixed with MathML, TeX or asciimath) in the box below for a live preview.</p>
+<div id="svg">
+  <div id="problem" style="visibility:hidden;">x=\delta\frac{-b\pm\sqrt{b^2-4ac}}{2}</div>
+</div>
+<!--<p> Type text (mixed with MathML, TeX or asciimath) in the box below for a live preview.</p>-->
 
 <textarea id="MathInput" cols="60" rows="3" onkeyup="Preview.Update()" style="margin-top:5px">
 </textarea>
@@ -51,13 +54,12 @@
 <div id="MathBuffer" style="border:1px solid; padding: 3px; width:50%; margin-top:5px; 
 visibility:hidden; position:absolute; top:0; left: 0"></div>
 
-<div id="problem">x=\delta\frac{-b\pm\sqrt{b^2-4ac}}{2}</div>
 <!--<div id=svg>
   <div id="math"></div>
 </div>-->
  <!--</div>-->
 <script>
-Preview.Init();
+  Preview.Init();
 </script>
 
 </body>
