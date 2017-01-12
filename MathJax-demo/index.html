@@ -1,12 +1,122 @@
 <html>
 
 <head>
-    <script src="../res/mathjax/mathjax.js?config=TeX-AMS_SVG"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="../res/mathjax/MathJax.js?config=TeX-AMS_SVG"></script>
+    <!--TeX-MML-AM_SVG-->
+    <link rel="stylesheet" href="index.css">
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: [],
+            jax: ["input/TeX","output/SVG"],
+            config:[],
+            styleSheets:[],
+            showMathMenu: false,        //showMathMenuMSIE: true,    deprecated
+            menuSettings: { 
+                zoom:"None",
+                zscale:"200%",
+                context:"MathJax",
+                textHints:true,
+                inTabOrder:true
+            },
+            errorSettings: {
+                message: ["[Math Processing Error]"],
+                style: {color:"#CC0000", "font-style":"italic"}
+            },
+            ignoreMMLattributes: {      //for MathML
+
+            },
+            styles:{
+
+            },
+
+            MathMenu:{
+                showContext: false
+            },
+            MathEvents: {
+                hover: 400,
+                style:{
+
+                }
+            },
+            MatchWebFonts: {
+                matchFor: {
+                    "HTML-CSS": false,
+                    NativeMML: false,
+                    SVG: true
+                },
+                fontCheckDelay: 2000,
+                fontCheckTimeout: 30 * 1000
+            },
+            SVG: {
+                scale:120,
+                font: "STIX-Web", //TeX, STIX-Web, Asana-Math, Neo-Euler, Gyre-Pagella, Gyre-Termes and Latin-Modern;
+                                  //The STIX-Web font is the most complete.
+                minScaleAdjust: 50,
+                blacker: 1,       //1em = 1000units
+                useFontCache: true,
+                useGlobalCache: true,
+                matchFontHeight: true,
+                linebreaks:{
+                    automatic: false,
+                    width: "container"
+                },
+                EqnChunk: 50,
+                EqnChunkFactor: 1.5,
+                EqnChunkDelay: 100,
+                style:{
+
+                },
+                tootip:{
+                    delayPost:600,
+                    delayClear:600,
+                    offsetX:10,
+                    offsetY:5
+                }
+            },
+            TeX: {
+                TagSide: "left",
+                Macros: {
+                    RR: '{\\bf R}',
+                    bold: ['{\\bf #1}',1]
+                },
+                TagIndent: ".8em"
+            },
+            showProcessingMessage: true,
+            tex2jax:{                       //tex2jax.js
+                inlineMath: [['$','$']],
+                balanceBraces: false,
+                processEscapes: true,
+                preview: [["img",{src: "images/icon.png"}]],        //在为渲染之前要显示图片
+                processRefs: true,
+                skipTags: ["script","noscript","style","textarea","pre","code"],
+                ignoreClass: "tex2jax_ignore",
+                processClass: "tex2jax_process"
+            }
+        });
+        MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+            console.log(MessageHook);
+            //  do something with the error.  message[2] is the Error object that records the problem.
+        });
+
+        MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+            console.log(message);
+            // do something with the error.  message[1] will contain the data about the error.
+        });
+
+        //MathJax.Hub.Queue(
+        //   ["resetEquationNumbers",MathJax.InputJax.TeX],
+        //    ["PreProcess",MathJax.Hub],
+        //    ["Reprocess",MathJax.Hub]
+        //);
+    </script>
 </head>
 
 <body>
-
-
+    <textarea id="MathInput" cols="60" rows="3" placeholder="$\sqrt{s^2 + b^2}$" onkeyup="Preview.Update()" style="margin-top:5px"></textarea>
+    <div id="buffer"></div>
+    <div id="preview"></div>
+    <script src="index.js"></script>
 </body>
 
 </html>
