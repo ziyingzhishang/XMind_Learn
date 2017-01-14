@@ -11,9 +11,21 @@
             jax: ["input/TeX","output/SVG"],
             config:[],
             styleSheets:[],
+            showProcessingMessage: true,
             showMathMenu: false,        //showMathMenuMSIE: true,    deprecated
+            delayStartupUntil: "none",   //"onload" "configured"
+            skipStartupTypeset: false,  // when page onload ,typeset the mathematics
+            displayAlign: "center",     // "left" ,"right","center"
+            displayIndent:"0em" ,       // 
+            messageStyle: "normal",     // "simple", "none", "normal"
+            preJax: null,
+            postJax: null,
+            preRemoveClass: "Mathjax_Preview",
+            elements:[                  // Dom ids
+
+            ],
             menuSettings: { 
-                zoom:"None",
+                zoom:"None",        //"None", "Hover", "Click", or "Double-Click" to set zoom trigger
                 zscale:"200%",
                 context:"MathJax",
                 textHints:true,
@@ -52,7 +64,9 @@
                 scale:120,
                 font: "STIX-Web", //TeX, STIX-Web, Asana-Math, Neo-Euler, Gyre-Pagella, Gyre-Termes and Latin-Modern;
                                   //The STIX-Web font is the most complete.
+                undefinedFamily: "STIXGeneral, 'Arial Unicode MS', serif",      //used for not in the selected font
                 minScaleAdjust: 50,
+                mtextFontInherit: false,
                 blacker: 1,       //1em = 1000units
                 useFontCache: true,
                 useGlobalCache: true,
@@ -61,8 +75,8 @@
                     automatic: false,
                     width: "container"
                 },
-                EqnChunk: 50,
-                EqnChunkFactor: 1.5,
+                EqnChunk: 10,
+                EqnChunkFactor: 0,
                 EqnChunkDelay: 100,
                 style:{
 
@@ -82,7 +96,7 @@
                 },
                 TagIndent: ".8em"
             },
-            showProcessingMessage: true,
+            
             tex2jax:{                       //tex2jax.js
                 inlineMath: [['$','$']],
                 balanceBraces: false,
@@ -101,6 +115,7 @@
 
         MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
             console.log(message);
+            <!--Preview.preview.innerHTML="ERROR"-->
             // do something with the error.  message[1] will contain the data about the error.
         });
 

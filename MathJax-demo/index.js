@@ -31,8 +31,6 @@ var Preview = {
         } else {
             this.buffer.innerHTML = this.oldtext = text;
             this.mjRunning = true;
-            // var math = MathJax.Hub.getAllJax("buffer")[0];
-            // MathJax.Hub.Queue(["Text" ,math,"x+1"],["PreviewDone",this]);
             MathJax.Hub.Queue(
                 ["Typeset",MathJax.Hub, this.buffer],
                 ["PreviewDone", this]

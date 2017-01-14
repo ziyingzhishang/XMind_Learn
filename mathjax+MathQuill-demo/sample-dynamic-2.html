@@ -17,16 +17,37 @@
     tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
   });
 </script>
-<script type="text/javascript" src="../res/MathJax.js?config=TeX-AMS_SVG"></script>
+<script type="text/javascript" src="../res/mathjax/MathJax.js?config=TeX-AMS_SVG"></script>
 <script type="text/javascript" src="../res/svg.js"></script>
 <link rel="stylesheet" href="../res/mathquill/mathquill.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="../res/mathquill/mathquill.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="../res/mathquill/mathquill.js"></script>
 <script type="text/javascript" src="sample-dynamic-2.js"></script>
 <style>
   body{position:relative; color:#000; border:1px solid #000; overflow: hidden;}
   #svg{position: absolute; }
   #problem{position: absolute; background: white;}
+  .topic {
+    fill : lightblue;
+    stroke: black;
+    stroke-width: 2px;
+  }
+  /*.topic:hover {*/
+    /*visibility: visible;*/
+    /*stroke-width: 4px;*/
+    /*stroke: black;*/
+    /*stroke-opacity: 0.3;*/
+    /*fill: none;*/
+  /*}*/
+
+  /*.topic:left {
+     fill: blue;
+  }
+  ::selection {
+        background:#d3d3d3; 
+        color:#555;
+  }*/
+
 </style>
 <script>
     var MQ = MathQuill.getInterface(2);
