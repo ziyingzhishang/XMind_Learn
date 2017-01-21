@@ -92,6 +92,36 @@ window.onload = function() {
 
     draw = SVG('svg').size(outw, outh);
     rect = draw.rect(10, 10).attr({ fill: "lightblue", stroke: "black" });
+    // rect.animate(3000).move(0,0).during(function(pos, morph, ease, situation){
+    //     rect.fill(morph('#333','#ff0066'));
+    // }).after(function(situation) {
+    //     this.animate().attr({fill: '#fff'});
+    // }) ;
+
+    // rect.click(function() {
+    //     this.fill({color: '#333'});
+    // });
+
+    // var click = function() {}        //listeners 
+    // rect.on('click', click);
+    // SVG.on(window, 'click', click)   // bind event to an html element.
+
+    // rect.on('myevent', function(e) {
+    //     console.log(e.detail.some);
+    // });
+
+    // function someThingHappen() {
+    //     rect.fire('myevent', {some: 'data'});
+    // }
+
+    // rect.off('myevent');
+
+
+    // rect.on('myevent.namespace',function(){
+
+    // });
+    // rect.click(null);    //remove it quiet as easy.
+    
     group = draw.group();
     pNode = group.node;
     pNode.setAttribute("transform","translate("+wmargin+","+hmargin+")");

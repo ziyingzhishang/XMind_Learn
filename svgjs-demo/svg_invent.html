@@ -1,0 +1,77 @@
+<html>
+<head>
+    <script src="../res/svg.js"></script>
+</head>
+<body>
+    <div id="rootSvg"></div>
+</body>
+<script type="text/javascript">
+SVG.Rounded = SVG.invent({
+    // Define the type of element that should be created
+    create: 'rect'
+
+    // Specify from which existing class this shape inherits
+    , inherit: SVG.Shape
+
+    // Add custom methods to invented shape
+    , extend: {
+        // Create method to proportionally scale the rounded corners
+        size: function(width, height) {
+        return this.attr({
+                width:  width, 
+                height: height,
+                rx:     height / 5,
+                ry:     height / 5,
+            })
+        }
+    }
+
+    // Add method to parent elements
+    , construct: {
+        // Create a rounded element
+        rounded: function(width, height) {
+            return this.put(new SVG.Rounded).size(width, height)
+        }
+
+    }
+})
+
+
+// 为不同层次的svg增加方法， SVG.extend(SVG.Shape, SVG.Element, ..., {
+//          ....方法
+// });
+SVG.extend(SVG.Shape, {
+    paintRed: function() {
+        return this.fill('red');
+    }
+});
+// SVG.Ellipse >> SVG.Shape >> SVG.Element
+
+
+var draw = SVG("rootSvg").size(1000, 1000);
+// var rounded = draw.rounded(80, 60);
+// rounded.paintRed();
+
+
+var path = draw.path('M 100 200 C 200 100 300  0 400 100 C 500 200 600 300 700 200 C 800 100 900 100 900 100z')
+
+path.fill('none').stroke({ width: 1 })
+
+path.marker('start', 10, 10, function(add) {
+  add.circle(10).fill('#f06')
+})
+path.marker('mid', 10, 10, function(add) {
+  add.rect(10, 10)
+})
+path.marker('end', 20, 20, function(add) {
+  add.circle(6).center(4, 5)
+  add.circle(6).center(4, 15)
+  add.circle(6).center(16, 10)
+
+  this.fill('#0f6')
+})
+
+
+</script>
+
+</html>
